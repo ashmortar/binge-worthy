@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.guest.binge_worthy.ui.MainActivity"
-    android:theme="@style/noActionBarTheme">
+    android:theme="@style/noActionBarTheme"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/appNameTextView"
@@ -22,7 +23,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorAccent"/>
 
     <EditText
         android:id="@+id/searchQuery"
@@ -73,6 +75,7 @@
         android:layout_marginStart="8dp"
         android:background="@color/colorAccent"
         android:text="release-date search"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/ratingSearchButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -90,6 +93,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
         android:text="find movies"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,6 +110,7 @@
         android:layout_marginStart="8dp"
         android:background="@color/colorAccent"
         android:text="get top rated"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

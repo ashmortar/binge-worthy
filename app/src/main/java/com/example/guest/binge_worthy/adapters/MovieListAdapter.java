@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Movie;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -49,8 +52,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.moviePosterView)
-        ImageView mMoviePosterView;
+        @BindView(R.id.moviePosterView) ImageView mMoviePosterView;
+        @BindView(R.id.titleTextView) TextView mTitleTextView;
+        @BindView(R.id.descriptionTextView) TextView mDescriptionTextView;
+        @BindView(R.id.vote_averageTextView) TextView mVote_AverageTextView;
+        @BindView(R.id.vote_countTextView) TextView mVote_CountTextView;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
@@ -61,7 +67,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
-            Toast.makeText(mContext, "toast", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "detail page coming soon...", Toast.LENGTH_LONG).show();
         }
 
         public void bindMovie(Movie movie) {
@@ -71,6 +77,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mMoviePosterView);
+            mTitleTextView.setText(movie.getTitle());
+            mDescriptionTextView.setText(movie.getOverview());
+            mVote_AverageTextView.setText(movie.getVote_average());
+            mVote_CountTextView.setText(movie.getVote_count());
         }
     }
 }
