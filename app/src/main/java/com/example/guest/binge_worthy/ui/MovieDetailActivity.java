@@ -5,8 +5,9 @@ import android.os.Bundle;
 
 import com.example.guest.binge_worthy.R;
 
-public class
-MovieDetailActivity extends AppCompatActivity {
+public class MovieDetailActivity extends AppCompatActivity {
+    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

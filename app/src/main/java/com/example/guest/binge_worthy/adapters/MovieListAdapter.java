@@ -2,6 +2,7 @@ package com.example.guest.binge_worthy.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,16 +12,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Movie;
+import com.example.guest.binge_worthy.ui.MovieDetailActivity;
 import com.squareup.picasso.Picasso;
 
+import org.parceler.Parcels;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.HttpUrl;
 
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
     private static final String TAG = MovieListAdapter.class.getSimpleName();
@@ -67,7 +72,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
-            Toast.makeText(mContext, "detail page coming soon...", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(mContext, MovieDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("restaurants", Parcels.wrap(mMovies));
+
+            mContext.startActivity(intent);
+
         }
 
         public void bindMovie(Movie movie) {

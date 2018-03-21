@@ -44,7 +44,7 @@ public class MovieService {
             int id = movieJSON.getInt("id");
             String title = movieJSON.getString("title");
             String overview = movieJSON.getString("overview");
-            String posterUrl = movieJSON.getString("poster_path");
+            String posterUrl = movieJSON.getString("backdrop_path");
             String vote_average = movieJSON.getString("vote_average");
             String vote_count = movieJSON.getString("vote_count");
             Movie movie = new Movie(id, title, overview, posterUrl, vote_average, vote_count);

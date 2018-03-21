@@ -19,4 +19,5 @@ public class Constants {
     public static final String MULTI_SEARCH_URL = "https://api.themoviedb.org/3/search/multi";
     public static final String GET_MOVIE_DETAIL_URL = "https://api.themoviedb.org/3/movie/";
     public static final String RATING_SEARCH_URL = "https://api.themoviedb.org/3/movie/top_rated";
+    public static final String MOVIE_DETAIL_URL = "https://api.themoviedb.org/3/movie/";
 }
