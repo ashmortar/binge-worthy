@@ -3,13 +3,19 @@ package com.example.guest.binge_worthy.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.guest.binge_worthy.R;
+import com.example.guest.binge_worthy.adapters.MovieListAdapter;
+import com.example.guest.binge_worthy.models.Movie;
 import com.example.guest.binge_worthy.services.MovieService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -17,6 +23,9 @@ import okhttp3.Response;
 
 public class MovieListActivity extends AppCompatActivity {
     public static final String TAG = MovieListActivity.class.getSimpleName();
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    private MovieListAdapter mAdapter;
+    public ArrayList<Movie> movies = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,19 @@ public class MovieListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.v(TAG, response.toString());
+                movies = movieService.processResults(response);
+
+                MovieListActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter = new MovieListAdapter(getApplicationContext(), movies);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                                new LinearLayoutManager(MovieListActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
+                    }
+                });
             }
         });
     }

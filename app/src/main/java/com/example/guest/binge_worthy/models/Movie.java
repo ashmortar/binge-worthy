@@ -9,22 +9,18 @@ public class Movie {
     private String tagline;
     private String posterUrl;
     private String[] genres;
-    private double vote_average;
-    private int vote_count;
+    private String vote_average;
+    private String vote_count;
     private CastMember[] cast;
     private CrewMember[] crew;
 
-    public Movie(int id, String title, String overview, String tagline, String posterUrl, String[] genres, double vote_average, int vote_count, CastMember[] cast, CrewMember[] crew) {
+    public Movie(int id, String title, String overview, String posterUrl, String vote_average, String vote_count) {
         this.id = id;
         this.title = title;
         this.overview = overview;
-        this.tagline = tagline;
-        this.posterUrl = posterUrl;
-        this.genres = genres;
-        this.vote_average = vote_average;
-        this.vote_count = vote_count;
-        this.cast = cast;
-        this.crew = crew;
+        this.posterUrl = "https://image.tmdb.org/t/p/original" + posterUrl;
+        this.vote_average = vote_average + "/10";
+        this.vote_count = vote_count + " votes";
     }
 
     public int getId() {
@@ -51,11 +47,11 @@ public class Movie {
         return genres;
     }
 
-    public double getVote_average() {
+    public String getVote_average() {
         return vote_average;
     }
 
-    public int getVote_count() {
+    public String getVote_count() {
         return vote_count;
     }
 
