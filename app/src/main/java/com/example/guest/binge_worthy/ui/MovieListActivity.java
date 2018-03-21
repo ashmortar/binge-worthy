@@ -3,6 +3,7 @@ package com.example.guest.binge_worthy.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.services.MovieService;
@@ -15,6 +16,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class MovieListActivity extends AppCompatActivity {
+    public static final String TAG = MovieListActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +36,13 @@ public class MovieListActivity extends AppCompatActivity {
         movieService.movieListApiCall(url, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                Log.v(TAG, e.toString());
+                e.printStackTrace();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                Log.v(TAG, response.toString());
             }
         });
     }
