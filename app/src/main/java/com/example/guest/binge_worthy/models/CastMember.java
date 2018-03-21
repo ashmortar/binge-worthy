@@ -1,17 +1,22 @@
 package com.example.guest.binge_worthy.models;
 
+import org.parceler.Parcel;
+
 /**
  * Created by Guest on 3/21/18.
  */
 
+@Parcel
 public class CastMember {
-    private int cast_id;
-    private String character;
-    private String credit_id;
-    private int gender;
-    private int id;
-    private String name;
-    private String profile_path;
+    int cast_id;
+    String character;
+    String credit_id;
+    int gender;
+    int id;
+    String name;
+    String profile_path;
+
+    public CastMember() {}
 
     public CastMember(int cast_id, String character, String credit_id, int gender, int id, String name, String profile_path) {
         this.cast_id = cast_id;

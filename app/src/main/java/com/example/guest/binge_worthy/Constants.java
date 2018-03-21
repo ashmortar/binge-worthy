@@ -11,7 +11,7 @@ public class Constants {
     public static final String QUERY_PARAMETER = "query";
     public static final String ADULT_CONTENT_PARAMETER = "include_adult";
     public static final String RELEASE_DATE_PARAMETER = "year";
-    public static final String APPEND_TO_RESPONSE_PARAMETER = "append_to_result";
+    public static final String APPEND_TO_RESPONSE_PARAMETER = "append_to_response";
     //base url(s)
     public static final String MOVIE_SEARCH_URL = "https://api.themoviedb.org/3/search/movie";
     public static final String TV_SEARCH_URL = "https://api.themoviedb.org/3/search/tv";

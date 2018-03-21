@@ -72,9 +72,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.MOVIE_DETAIL_URL + mMovies.get(itemPosition).getId()).newBuilder();
+            urlBuilder.addQueryParameter(Constants.API_KEY_PARAMETER, Constants.API_KEY);
+            urlBuilder.addQueryParameter(Constants.APPEND_TO_RESPONSE_PARAMETER, "credits");
+            String url = urlBuilder.build().toString();
             Intent intent = new Intent(mContext, MovieDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("restaurants", Parcels.wrap(mMovies));
+            intent.putExtra("url", url);
 
             mContext.startActivity(intent);
 

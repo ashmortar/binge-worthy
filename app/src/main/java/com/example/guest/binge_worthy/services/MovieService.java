@@ -58,4 +58,16 @@ public class MovieService {
         }
         return movies;
     }
+
+    public Movie processDetailResults(Response response) {
+        try {
+            String jsonData = response.body().string();
+            JSONObject detailJSON = new JSONObject(jsonData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

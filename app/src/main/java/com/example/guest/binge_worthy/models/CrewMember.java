@@ -1,14 +1,18 @@
 package com.example.guest.binge_worthy.models;
 
+import org.parceler.Parcel;
 
+@Parcel
 public class CrewMember {
-    private String credit_id;
-    private String department;
-    private int gender;
-    private int id;
-    private String job;
-    private String name;
-    private String profile_path;
+    String credit_id;
+    String department;
+    int gender;
+    int id;
+    String job;
+    String name;
+    String profile_path;
+
+    public CrewMember() {}
 
     public CrewMember(String credit_id, String department, int gender, int id, String job, String name, String profile_path) {
         this.credit_id = credit_id;

@@ -1,18 +1,22 @@
 package com.example.guest.binge_worthy.models;
 
 
+import org.parceler.Parcel;
 
+@Parcel
 public class Movie {
-    private int id;
-    private String title;
-    private String overview;
-    private String tagline;
-    private String posterUrl;
-    private String[] genres;
-    private String vote_average;
-    private String vote_count;
-    private CastMember[] cast;
-    private CrewMember[] crew;
+    int id;
+    String title;
+    String overview;
+    String tagline;
+    String posterUrl;
+    String[] genres;
+    String vote_average;
+    String vote_count;
+    CastMember[] cast;
+    CrewMember[] crew;
+
+    public Movie() {}
 
     public Movie(int id, String title, String overview, String posterUrl, String vote_average, String vote_count) {
         this.id = id;
