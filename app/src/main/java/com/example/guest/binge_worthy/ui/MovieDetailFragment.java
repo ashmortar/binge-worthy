@@ -7,47 +7,56 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.guest.binge_worthy.R;
+import com.example.guest.binge_worthy.models.Movie;
+import com.example.guest.binge_worthy.services.MovieService;
+import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MovieDetailFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MovieDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.parceler.Parcels;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+
 public class MovieDetailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final int POSTER_MAX_WIDTH = 130;
+    private static final int POSTER_MAX_HEIGHT = 190;
+    private static final int HEADSHOT_MAX_WIDTH = 27;
+    private static final int HEADSHOT_MAX_HEIGHT = 48;
+    private Movie mMovie;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //bind views here:
+    @BindView(R.id.posterImageView)
+    ImageView mPosterImageView;
+    @BindView(R.id.fragmentTitleTextView)
+    TextView mFragmentTitleTextView;
+    @BindView(R.id.fragmentDescriptionTextView) TextView mFragmentDescriptionTextView;
+    @BindView(R.id.fragmentVote_averageTextView) TextView mFragmentVote_averageTextView;
+    @BindView(R.id.fragmentVote_countTextView) TextView mFragmentVote_countTextView;
+    @BindView(R.id.castMember1ImageView) ImageView mCastMember1ImageView;
+    @BindView(R.id.castMember1Character) TextView mCastMember1Character;
+    @BindView(R.id.castMember1Name) TextView mCastMember1Name;
+    @BindView(R.id.castMember2ImageView) ImageView mCastMember2ImageView;
+    @BindView(R.id.castMember2Character) TextView mCastMember2Character;
+    @BindView(R.id.castMember2Name) TextView mCastMember2Name;
+    @BindView(R.id.castMember3ImageView) ImageView mCastMember3ImageView;
+    @BindView(R.id.castMember3Character) TextView mCastMember3Character;
+    @BindView(R.id.castMember3Name) TextView mCastMember3Name;
+    @BindView(R.id.crewMemberImageView) ImageView mCrewMember1ImageView;
+    @BindView(R.id.crewMember1Job) TextView mCrewMember1Job;
+    @BindView(R.id.crewMember1Name) TextView mCrewMember1Name;
 
-    private OnFragmentInteractionListener mListener;
+    public MovieDetailFragment() {}
 
-    public MovieDetailFragment() {
-        // Required empty public constructor
-    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MovieDetailFragment.
-     */
     // TODO: Rename and change types and number of parameters
-    public static MovieDetailFragment newInstance(String param1, String param2) {
+    public static MovieDetailFragment newInstance(Movie movie) {
         MovieDetailFragment fragment = new MovieDetailFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable("movie", Parcels.wrap(movie));
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,55 +64,55 @@ public class MovieDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MovieService movieService = new MovieService();
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mMovie = Parcels.unwrap(getArguments().getParcelable("movie"));
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie_detail, container, false);
+        ButterKnife.bind(this, view);
+
+        //assign data to views
+        Picasso.with(view.getContext())
+                .load(mMovie.getPosterUrl())
+                .resize(POSTER_MAX_WIDTH, POSTER_MAX_HEIGHT)
+                .centerCrop()
+                .into(mPosterImageView);
+        Picasso.with(view.getContext())
+                .load(mMovie.getCast().get(0).getProfile_path())
+                .resize(HEADSHOT_MAX_WIDTH, HEADSHOT_MAX_HEIGHT)
+                .centerCrop()
+                .into(mCastMember1ImageView);
+        Picasso.with(view.getContext())
+                .load(mMovie.getCast().get(1).getProfile_path())
+                .resize(HEADSHOT_MAX_WIDTH, HEADSHOT_MAX_HEIGHT)
+                .centerCrop()
+                .into(mCastMember2ImageView);
+        Picasso.with(view.getContext())
+                .load(mMovie.getCast().get(2).getProfile_path())
+                .resize(HEADSHOT_MAX_WIDTH, HEADSHOT_MAX_HEIGHT)
+                .centerCrop()
+                .into(mCastMember3ImageView);
+        Picasso.with(view.getContext())
+                .load(mMovie.getCrew().get(0).getProfile_path())
+                .resize(HEADSHOT_MAX_WIDTH, HEADSHOT_MAX_HEIGHT)
+                .centerCrop()
+                .into(mCrewMember1ImageView);
+        mCastMember1Character.setText(mMovie.getCast().get(0).getCharacter());
+        mCastMember1Name.setText(mMovie.getCast().get(0).getName());
+        mCastMember2Character.setText(mMovie.getCast().get(1).getCharacter());
+        mCastMember2Name.setText(mMovie.getCast().get(1).getName());
+        mCastMember3Character.setText(mMovie.getCast().get(2).getCharacter());
+        mCastMember3Name.setText(mMovie.getCast().get(2).getName());
+        mCrewMember1Job.setText(mMovie.getCrew().get(0).getJob());
+        mCrewMember1Name.setText(mMovie.getCrew().get(0).getName());
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

@@ -25,7 +25,7 @@ public class CastMember {
         this.gender = gender;
         this.id = id;
         this.name = name;
-        this.profile_path = profile_path;
+        this.profile_path = "https://image.tmdb.org/t/p/original" + profile_path;
     }
 
     public int getCast_id() {

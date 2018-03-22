@@ -3,6 +3,8 @@ package com.example.guest.binge_worthy.models;
 
 import org.parceler.Parcel;
 
+import java.util.ArrayList;
+
 @Parcel
 public class Movie {
     int id;
@@ -13,8 +15,8 @@ public class Movie {
     String[] genres;
     String vote_average;
     String vote_count;
-    CastMember[] cast;
-    CrewMember[] crew;
+    ArrayList<CastMember> cast;
+    ArrayList<CrewMember> crew;
 
     public Movie() {}
 
@@ -59,11 +61,27 @@ public class Movie {
         return vote_count;
     }
 
-    public CastMember[] getCast() {
+    public ArrayList<CastMember> getCast() {
         return cast;
     }
 
-    public CrewMember[] getCrew() {
+    public ArrayList<CrewMember> getCrew() {
         return crew;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
+    }
+
+    public void setGenres(String[] genres) {
+        this.genres = genres;
+    }
+
+    public void setCast(ArrayList<CastMember> cast) {
+        this.cast = cast;
+    }
+
+    public void setCrew(ArrayList<CrewMember> crew) {
+        this.crew = crew;
     }
 }

@@ -4,7 +4,8 @@
     <string name="overview">Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.</string>
     <string name="vote_average">7.9/10</string>
     <string name="vote_count">1479 votes</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="actor">Marlon Brando</string>
+    <string name="character">Don Vito Corleone</string>
+    <string name="job">Director</string>
+    <string name="crew">Francis Ford Coppola</string>
 </resources>

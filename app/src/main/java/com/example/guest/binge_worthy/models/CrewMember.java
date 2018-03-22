@@ -21,7 +21,7 @@ public class CrewMember {
         this.id = id;
         this.job = job;
         this.name = name;
-        this.profile_path = profile_path;
+        this.profile_path = "https://image.tmdb.org/t/p/original"+profile_path;
     }
 
     public String getCredit_id() {
