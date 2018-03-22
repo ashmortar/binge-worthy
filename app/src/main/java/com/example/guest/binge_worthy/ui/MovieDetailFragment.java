@@ -60,7 +60,6 @@ public class MovieDetailFragment extends Fragment {
     public MovieDetailFragment() {}
 
 
-   //maybe this is where is should go? newInstance appears to bundle the movie for parceling in each fragment instance.
     public static MovieDetailFragment newInstance(Movie movie) {
         MovieDetailFragment fragment = new MovieDetailFragment();
         Bundle args = new Bundle();
@@ -68,6 +67,7 @@ public class MovieDetailFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

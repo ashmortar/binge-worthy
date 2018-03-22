@@ -30,13 +30,7 @@ public class MoviePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.MOVIE_DETAIL_URL + mMovies.get(position).getId()).newBuilder();
-        urlBuilder.addQueryParameter(Constants.API_KEY_PARAMETER, Constants.API_KEY);
-        urlBuilder.addQueryParameter(Constants.APPEND_TO_RESPONSE_PARAMETER, "credits");
 
-        String url = urlBuilder.build().toString();
-
-        getMovieDetail(url, position);
         return MovieDetailFragment.newInstance(mMovies.get(position));
     }
 
@@ -48,22 +42,6 @@ public class MoviePagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return mMovies.get(position).getTitle();
-    }
-    private void getMovieDetail(String url, final int i) {
-        final MovieService movieService = new MovieService();
-
-        movieService.movieListApiCall(url, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                mMovie = movieService.processDetailResults(response, mMovie);
-                mMovies.set(i, mMovie);
-            }
-        });
     }
 
 }
