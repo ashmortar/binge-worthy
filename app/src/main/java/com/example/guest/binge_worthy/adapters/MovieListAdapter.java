@@ -15,17 +15,22 @@ import android.widget.Toast;
 import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Movie;
+import com.example.guest.binge_worthy.services.MovieService;
 import com.example.guest.binge_worthy.ui.MovieDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.HttpUrl;
+import okhttp3.Response;
 
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
     private static final String TAG = MovieListAdapter.class.getSimpleName();
@@ -33,6 +38,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     private static final int MAX_HEIGHT = 190;
     private ArrayList<Movie> mMovies = new ArrayList<>();
     private Context mContext;
+    private Movie mMovie;
+    private int itemPosition;
 
     public MovieListAdapter(Context context, ArrayList<Movie> movies) {
         mContext = context;
@@ -71,15 +78,16 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         }
         @Override
         public void onClick(View v) {
-            int itemPosition = getLayoutPosition();
+            itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, MovieDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("movies", Parcels.wrap(mMovies));
 
-
             mContext.startActivity(intent);
 
         }
+
+
 
         public void bindMovie(Movie movie) {
             Log.v(TAG, movie.getTitle());

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Movie;
 import com.example.guest.binge_worthy.services.MovieService;
@@ -17,8 +18,14 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.Response;
 
 
 public class MovieDetailFragment extends Fragment {
@@ -27,6 +34,7 @@ public class MovieDetailFragment extends Fragment {
     private static final int HEADSHOT_MAX_WIDTH = 27;
     private static final int HEADSHOT_MAX_HEIGHT = 48;
     private Movie mMovie;
+    private MovieService movieService = new MovieService();
 
     //bind views here:
     @BindView(R.id.posterImageView)
@@ -52,7 +60,7 @@ public class MovieDetailFragment extends Fragment {
     public MovieDetailFragment() {}
 
 
-    // TODO: Rename and change types and number of parameters
+   //maybe this is where is should go? newInstance appears to bundle the movie for parceling in each fragment instance.
     public static MovieDetailFragment newInstance(Movie movie) {
         MovieDetailFragment fragment = new MovieDetailFragment();
         Bundle args = new Bundle();
@@ -67,9 +75,9 @@ public class MovieDetailFragment extends Fragment {
         MovieService movieService = new MovieService();
         if (getArguments() != null) {
             mMovie = Parcels.unwrap(getArguments().getParcelable("movie"));
-
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
