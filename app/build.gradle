@@ -18,7 +18,6 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField('String', 'MOVIE_DB_API_KEY', MOVIE_DB_API_KEY)
         it.buildConfigField('String', 'TASTEDIVE_DB_API_KEY', TASTEDIVE_API_KEY)
     }
     repositories {
