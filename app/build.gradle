@@ -18,7 +18,7 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField('String', 'API_KEY', APIKey);
+        it.buildConfigField('String', 'TASTEDIVE_DB_API_KEY', TASTEDIVE_API_KEY)
     }
     repositories {
         mavenCentral()
