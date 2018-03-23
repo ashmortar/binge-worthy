@@ -1,11 +1,13 @@
 package com.example.guest.binge_worthy.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.adapters.RecommendationListAdapter;
@@ -27,7 +29,7 @@ public class ListActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView) RecyclerView mRecyclerVew;
     private RecommendationListAdapter mAdapter;
     public ArrayList<Recommendation> recommendations = new ArrayList<>();
-
+    Context mContext;
 
 
     @Override
@@ -35,6 +37,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
+         mContext = this;
 
         Intent intent = getIntent();
         String query = intent.getStringExtra("query");
@@ -57,17 +60,29 @@ public class ListActivity extends AppCompatActivity {
                 Log.v(TAG, response.toString());
                 recommendations = tasteDiveService.processResults(response);
 
-                ListActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter = new RecommendationListAdapter(getApplicationContext(), recommendations);
-                        mRecyclerVew.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(ListActivity.this);
-                        mRecyclerVew.setLayoutManager(layoutManager);
-                        mRecyclerVew.setHasFixedSize(true);
-                    }
-                });
+                if (recommendations.size() > 0 ) {
+                    ListActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter = new RecommendationListAdapter(getApplicationContext(), recommendations);
+                            mRecyclerVew.setAdapter(mAdapter);
+                            RecyclerView.LayoutManager layoutManager =
+                                    new LinearLayoutManager(ListActivity.this);
+                            mRecyclerVew.setLayoutManager(layoutManager);
+                            mRecyclerVew.setHasFixedSize(true);
+                        }
+                    });
+                } else {
+                    ListActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),"your search did not match any results please try again", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(ListActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+
             }
         });
 
