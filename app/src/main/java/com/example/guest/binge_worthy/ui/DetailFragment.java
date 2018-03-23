@@ -1,6 +1,8 @@
 package com.example.guest.binge_worthy.ui;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,7 +21,7 @@ import org.w3c.dom.Text;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailFragment extends Fragment {
+public class DetailFragment extends Fragment  implements  View.OnClickListener {
     @BindView(R.id.fragNameView)
     TextView mFragNameView;
     @BindView(R.id.fragTeaserView) TextView mFragTeaserView;
@@ -57,9 +59,25 @@ public class DetailFragment extends Fragment {
         mFragNameView.setText(mRecommendation.getName());
         mFragTypeView.setText(mRecommendation.getType());
         mFragTeaserView.setText(mRecommendation.getwTeaser());
-        mFragWUrlView.setText(mRecommendation.getwUrl());
-        mFragYUrlView.setText(mRecommendation.getyUrl());
+        mFragWUrlView.setText("wikipedia");
+        mFragYUrlView.setText("youtube");
+
+        mFragWUrlView.setOnClickListener(this);
+        mFragYUrlView.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mFragWUrlView) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRecommendation.getwUrl()));
+            startActivity(webIntent);
+        }
+        if (v == mFragYUrlView) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRecommendation.getyUrl()));
+            startActivity(webIntent);
+        }
+
     }
 }

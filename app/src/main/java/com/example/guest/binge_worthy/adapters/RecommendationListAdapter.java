@@ -109,6 +109,9 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
             if (type.equals("music")) {
                 return R.drawable.music;
             }
+            if (type.equals("game")) {
+                return R.drawable.game;
+            }
             else {
                 return R.drawable.photo;
             }

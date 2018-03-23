@@ -56,15 +56,15 @@ public class TasteDiveService {
                 String type = recommendationJSON.getString("Type");
                 String wTeaser = recommendationJSON.getString("wTeaser");
                 String wURL = recommendationJSON.optString("wUrl", "no wikipedia page available");
-                String yUrl = recommendationJSON.optString("yUrl", "no youtube videos available");
+                String yUrl = recommendationJSON.getString("yUrl");
                 String yID = recommendationJSON.optString("yID", "");
-                if (wURL == null) {
+                if (wURL.equals("null")) {
                     wURL = "no wikipedia page available";
                 }
-                if (yUrl == null) {
-                    yUrl = "no youtube videos available";
+                if (yUrl.equals("null")) {
+                    yUrl = "https://www.youtube.com/results?search_query=" +  name.replace(" ", "+");
                 }
-                if (yID == null) {
+                if (yID.equals("null")) {
                     yID = "";
                 }
                 Recommendation recommendation = new Recommendation(name, type, wTeaser, wURL, yUrl, yID);
