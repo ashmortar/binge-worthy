@@ -97,7 +97,7 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
         }
 
         public int getIcon(String type) {
-            if (type.equals("author")) {
+            if (type.equals("author") || type.equals("book")) {
                 return R.drawable.author;
             }
             if (type.equals("movie")) {
