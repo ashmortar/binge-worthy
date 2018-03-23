@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\ashmo\Desktop\epicodus-projects\binge-worthy\app\app.iml" filepath="C:\Users\ashmo\Desktop\epicodus-projects\binge-worthy\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/binge-worthy.iml" filepath="$PROJECT_DIR$/binge-worthy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bingeworthy.iml" filepath="$PROJECT_DIR$/bingeworthy.iml" />
+      <module fileurl="file://C:\Users\ashmo\Desktop\epicodus-projects\binge-worthy\binge-worthy.iml" filepath="C:\Users\ashmo\Desktop\epicodus-projects\binge-worthy\binge-worthy.iml" />
+      <module fileurl="file://C:\Users\ashmo\Desktop\epicodus-projects\binge-worthy\bingeworthy.iml" filepath="C:\Users\ashmo\Desktop\epicodus-projects\binge-worthy\bingeworthy.iml" />
     </modules>
   </component>
 </project>
