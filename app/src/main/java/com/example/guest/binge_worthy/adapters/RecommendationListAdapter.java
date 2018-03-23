@@ -1,6 +1,7 @@
 package com.example.guest.binge_worthy.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
@@ -18,7 +19,10 @@ import android.widget.Toast;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.example.guest.binge_worthy.services.TasteDiveService;
+import com.example.guest.binge_worthy.ui.DetailActivity;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -73,7 +77,10 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
         @Override
         public void onClick(View v) {
             itemPosition = getLayoutPosition();
-            Toast.makeText(itemView.getContext(), "detail page", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(mContext, DetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("recommendations", Parcels.wrap(mRecommendations));
+            mContext.startActivity(intent);
         }
 
         public void bindRecommendation(Recommendation recommendation) {
