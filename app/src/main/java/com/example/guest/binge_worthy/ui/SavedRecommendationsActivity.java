@@ -1,0 +1,79 @@
+package com.example.guest.binge_worthy.ui;
+
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.guest.binge_worthy.R;
+import com.example.guest.binge_worthy.adapters.FirebaseRecommendationViewHolder;
+import com.example.guest.binge_worthy.models.Recommendation;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class SavedRecommendationsActivity extends AppCompatActivity {
+    private FirebaseRecyclerAdapter mFirebaseAdapter;
+    private FirebaseUser user;
+    private Query query;
+    private String uid;
+
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list);
+        ButterKnife.bind(this);
+        setupFirebaseAdapter();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = user.getUid();
+    }
+
+    private void setupFirebaseAdapter() {
+
+        query = FirebaseDatabase.getInstance().getReference("users").child(uid);
+        FirebaseRecyclerOptions<Recommendation> options = new FirebaseRecyclerOptions.Builder<Recommendation>()
+                .setQuery(query, Recommendation.class)
+                .build();
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Recommendation, FirebaseRecommendationViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(FirebaseRecommendationViewHolder holder, int position, Recommendation model) {
+                holder.bindRecommendation(model);
+            }
+
+            @NonNull
+            @Override
+            public FirebaseRecommendationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommendation_list_item, parent, false);
+                return new FirebaseRecommendationViewHolder(view);
+            }
+        };
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mFirebaseAdapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mFirebaseAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mFirebaseAdapter.stopListening();
+    }
+}

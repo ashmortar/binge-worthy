@@ -4,12 +4,13 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Recommendation {
-    String name;
-    String Type;
-    String wTeaser;
-    String wUrl;
-    String yUrl;
-    String yID;
+    private String name;
+    private String Type;
+    private String wTeaser;
+    private String wUrl;
+    private String yUrl;
+    private String yID;
+    private String pushId;
 
     public Recommendation(){}
 
@@ -26,23 +27,55 @@ public class Recommendation {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getType() {
         return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 
     public String getwTeaser() {
         return wTeaser;
     }
 
+    public void setwTeaser(String wTeaser) {
+        this.wTeaser = wTeaser;
+    }
+
     public String getwUrl() {
         return wUrl;
+    }
+
+    public void setwUrl(String wUrl) {
+        this.wUrl = wUrl;
     }
 
     public String getyUrl() {
         return yUrl;
     }
 
+    public void setyUrl(String yUrl) {
+        this.yUrl = yUrl;
+    }
+
     public String getyID() {
         return yID;
+    }
+
+    public void setyID(String yID) {
+        this.yID = yID;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }

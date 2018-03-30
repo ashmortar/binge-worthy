@@ -9,10 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import org.parceler.Parcels;
@@ -29,6 +35,7 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
     TextView mFragTypeView;
     @BindView(R.id.fragwUrlView) TextView mFragWUrlView;
     @BindView(R.id.fragyUrlView) TextView mFragYUrlView;
+    @BindView(R.id.saveButton) Button mSaveButton;
     private Recommendation mRecommendation;
 
     public DetailFragment() {}
@@ -64,6 +71,7 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
 
         mFragWUrlView.setOnClickListener(this);
         mFragYUrlView.setOnClickListener(this);
+        mSaveButton.setOnClickListener(this);
 
         return view;
     }
@@ -77,6 +85,21 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
         if (v == mFragYUrlView) {
             Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRecommendation.getyUrl()));
             startActivity(webIntent);
+        }
+
+        if (v == mSaveButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            DatabaseReference ref = FirebaseDatabase
+                    .getInstance()
+                    .getReference("users")
+                    .child(uid);
+            DatabaseReference instanceRef = ref.push();
+            String pushId = instanceRef.getKey();
+            mRecommendation.setPushId(pushId);
+            instanceRef.setValue(mRecommendation);
+            Toast.makeText(getContext(), "recommendation added to your list", Toast.LENGTH_SHORT).show();
         }
 
     }

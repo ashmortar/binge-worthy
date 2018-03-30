@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
     @BindView(R.id.searchQuery) EditText mSearchQuery;
     @BindView(R.id.queryButton) Button mQueryButton;
+    @BindView(R.id.savedItemsList) Button mSavedItemsButton;
 
 
     @Override
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         mSearchQuery.setText("");
         mQueryButton.setOnClickListener(this);
+        mSavedItemsButton.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -76,6 +78,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 finish();
             }
+        }
+        if (v == mSavedItemsButton) {
+            Intent intent = new Intent(MainActivity.this, SavedRecommendationsActivity.class);
+            startActivity(intent);
+
         }
     }
 
