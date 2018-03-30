@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -33,6 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String mName;
     private ProgressDialog mAuthDialog;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     @BindView(R.id.createAccountNameEditText) EditText mNameEditText;
     @BindView(R.id.createAccountEmailEditText) EditText mEmailEditText;
@@ -80,6 +82,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
+        view.startAnimation(buttonClick);
         if (view == mCreateAccountButton) {
             createAccount();
         }

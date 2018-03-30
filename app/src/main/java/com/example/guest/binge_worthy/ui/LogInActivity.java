@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = LogInActivity.class.getSimpleName();
     private FirebaseAuth.AuthStateListener mAuthListener;
     private ProgressDialog mAuthProgressDialog;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     @BindView(R.id.signInEmailEditText) EditText mEmailEditText;
     @BindView(R.id.signInPasswordEditText) EditText mPasswordEditText;
@@ -67,6 +69,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+        view.startAnimation(buttonClick);
         if (view == mSignInButton) {
             login();
         }

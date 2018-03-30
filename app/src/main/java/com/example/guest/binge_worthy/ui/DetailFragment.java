@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
     @BindView(R.id.fragyUrlView) TextView mFragYUrlView;
     @BindView(R.id.saveButton) Button mSaveButton;
     private Recommendation mRecommendation;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     public DetailFragment() {}
 
@@ -78,6 +80,7 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        v.startAnimation(buttonClick);
         if (v == mFragWUrlView) {
             Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRecommendation.getwUrl()));
             startActivity(webIntent);

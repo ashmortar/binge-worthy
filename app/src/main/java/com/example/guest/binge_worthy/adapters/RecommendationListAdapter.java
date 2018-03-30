@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,7 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
     }
 
     public class RecommendationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
         //bind views here
         @BindView(R.id.iconImageView)
         ImageView mIconImageView;
@@ -76,6 +78,7 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
 
         @Override
         public void onClick(View v) {
+            v.startAnimation(buttonClick);
             itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, DetailActivity.class);
             intent.putExtra("position", itemPosition);

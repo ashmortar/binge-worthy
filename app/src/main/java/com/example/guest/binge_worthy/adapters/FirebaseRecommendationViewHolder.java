@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
     ArrayList recommendations = new ArrayList();
     private static final int MAX_HEIGHT = 200;
     private static final int MAX_WIDTH = 200;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
 
     public FirebaseRecommendationViewHolder (View itemView) {
@@ -62,6 +64,7 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
 
     @Override
     public void onClick(View view) {
+        view.startAnimation(buttonClick);
         user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
         final ArrayList<Recommendation> recommendations = new ArrayList<>();

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = MainActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
     @BindView(R.id.searchQuery) EditText mSearchQuery;
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @
     Override
     public void onClick(View v) {
-
+        v.startAnimation(buttonClick);
         if (v == mQueryButton) {
             String query = mSearchQuery.getText().toString();
 

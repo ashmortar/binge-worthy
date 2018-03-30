@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
     private RecommendationListAdapter mAdapter;
     public ArrayList<Recommendation> recommendations = new ArrayList<>();
     Context mContext;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
 
     @Override
@@ -95,7 +97,9 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        view.startAnimation(buttonClick);
         if (view == mSearchedTermView) {
+
             Toast.makeText(this, "search term detail view", Toast.LENGTH_SHORT).show();
         }
     }
