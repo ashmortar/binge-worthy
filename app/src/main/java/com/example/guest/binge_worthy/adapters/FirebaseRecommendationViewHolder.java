@@ -1,6 +1,7 @@
 package com.example.guest.binge_worthy.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -9,8 +10,18 @@ import android.widget.TextView;
 
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
+import com.example.guest.binge_worthy.ui.DetailActivity;
+import com.example.guest.binge_worthy.ui.DetailFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -51,6 +62,30 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
 
     @Override
     public void onClick(View view) {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        final ArrayList<Recommendation> recommendations = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(uid);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    recommendations.add(snapshot.getValue(Recommendation.class));
+                }
+                int itemPosition = getLayoutPosition();
+
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.putExtra("position", itemPosition);
+                intent.putExtra("recommendations", Parcels.wrap(recommendations));
+                intent.putExtra("query", "Your Saved Items");
+                mContext.startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: " + databaseError.getDetails());
+            }
+        });
 
     }
 
