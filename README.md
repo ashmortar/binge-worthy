@@ -3,7 +3,7 @@
 
 #### _A content suggestion system for lovers of books, movies, tv, music and more!_
 
-#### By _**Aaron Ross (3/23/2018)**_
+#### By _**Aaron Ross (3/30/2018)**_
 
 ## Description
 
@@ -21,14 +21,13 @@ This android app uses the [TASTED!VE](https://tastedive.com/) api to drive user 
 
 
 ## Future Development
-* User accounts
-* Save favorites
+
 * embed youtube videos in detail view
 * use tmDB data and maybe another api for music data for different recommendation types
 
 ## Known Bugs
 
-No known issues.
+* Curretnly there is a bug where the app will occasionally force exit when navigating from the list activity to the main activity.
 
 ## Support and contact details
 
