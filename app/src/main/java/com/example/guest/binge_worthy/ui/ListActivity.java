@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guest.binge_worthy.R;
@@ -24,9 +26,10 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = ListActivity.class.getSimpleName();
     @BindView(R.id.recyclerView) RecyclerView mRecyclerVew;
+    @BindView(R.id.textView2) TextView mSearchedTermView;
     private RecommendationListAdapter mAdapter;
     public ArrayList<Recommendation> recommendations = new ArrayList<>();
     Context mContext;
@@ -41,6 +44,8 @@ public class ListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String query = intent.getStringExtra("query");
+        mSearchedTermView.setText(query);
+        mSearchedTermView.setOnClickListener(this);
 
         getRecommendations(query);
     }
@@ -86,5 +91,12 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == mSearchedTermView) {
+            Toast.makeText(this, "search term detail view", Toast.LENGTH_SHORT).show();
+        }
     }
 }

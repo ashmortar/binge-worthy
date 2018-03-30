@@ -9,11 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -22,96 +22,109 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fragTypeView"
+                        android:layout_width="315dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="show"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light" />
 
                     <TextView
                         android:id="@+id/fragNameView"
                         android:layout_width="288dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textAlignment="center"
                         android:padding="10dp"
                         android:text="Party Down"
+                        android:textAlignment="center"
                         android:textColor="@color/colorAccent"
                         android:textSize="36sp" />
 
-                    <TextView
-                        android:id="@+id/fragTypeView"
-                        android:layout_width="315dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="show"
-                        android:textColor="@android:color/background_light" />
 
                 </LinearLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/background_light">
 
 
-
                 <TextView
                     android:id="@+id/fragTeaserView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="Party Down is an American comedy television series created and primarily written by John Enbom, Rob Thomas, Dan Etheridge and Paul Rudd that aired on the Starz network in the United States in 2009 and 2010. The series follows a group of caterers in Los Angeles as they hope to make it in Hollywood.Starz canceled Party Down on June 30, 2010. While the show was warmly received by critics, its Nielsen ratings were very low. Losing Jane Lynch to Glee as well as Adam Scott to Parks and Recreation were believed to be additional factors in the decision to end the series.This half-hour comedy follows a Los Angeles, California, catering team for the titular company. The sextet of aspiring Hollywood actors and writers, as well as drifting lost souls, work small-time catering gigs while hoping for their break or some positive change in their lives. Each episode finds the team working a new event, and inevitably getting tangled up with the colorful, affluent guests and their absurd lives."
-                    android:textSize="10sp"
-                    android:padding="10dp"/>
+                    android:textSize="10sp" />
 
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp">
+
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/link"
                         android:layout_gravity="center"
                         android:paddingLeft="10dp"
                         android:paddingStart="10dp"
-                        />
+                        android:src="@drawable/link" />
+
                     <TextView
                         android:id="@+id/fragwUrlView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:text="http://en.wikipedia.org/wiki/Party_Down"
-                        android:textColor="@color/colorAccent"
-                        android:padding="10dp"/>
+                        android:textColor="@color/colorAccent" />
                 </LinearLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp">
+
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/link"
                         android:layout_gravity="center"
                         android:paddingLeft="10dp"
                         android:paddingStart="10dp"
-                        />
+                        android:src="@drawable/link" />
+
                     <TextView
                         android:id="@+id/fragyUrlView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:text="http://en.wikipedia.org/wiki/Party_Down"
-                        android:textColor="@color/colorAccent"
-                        android:padding="10dp"/>
+                        android:textColor="@color/colorAccent" />
                 </LinearLayout>
 
             </RelativeLayout>

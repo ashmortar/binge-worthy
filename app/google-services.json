@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "871555835433",
+    "firebase_url": "https://bingeworthy-2018.firebaseio.com",
+    "project_id": "bingeworthy-2018",
+    "storage_bucket": "bingeworthy-2018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871555835433:android:2fc7be71b49cae65",
+        "android_client_info": {
+          "package_name": "com.example.guest.binge_worthy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "871555835433-v2ojtgdq797io6oqp1t3drcj1kq7bmdj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.guest.binge_worthy",
+            "certificate_hash": "5e24b41aeb2aff7316780a9e828801d79ba85524"
+          }
+        },
+        {
+          "client_id": "871555835433-avs277ik681758rr1pio4unrv9e10o5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRkrne2VFtkbmH5w_gUm1bo9f5ijOI09w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "871555835433-avs277ik681758rr1pio4unrv9e10o5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

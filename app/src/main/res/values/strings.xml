@@ -8,7 +8,7 @@
     <string name="character">Don Vito Corleone</string>
     <string name="job">Director</string>
     <string name="crew">Francis Ford Coppola</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Welcome">bingeWorthy</string>
+    <string name="login">please enter the email and password you used to create your account</string>
+    <string name="createAccount">register your account below, we will never share you email address without your permission</string>
 </resources>
