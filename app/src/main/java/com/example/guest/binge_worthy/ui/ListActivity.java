@@ -67,10 +67,11 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call call, Response response) throws IOException {
                 Log.v(TAG, response.toString());
                 recommendations = tasteDiveService.processResults(response);
-                queryFound = recommendations.get(0);
-                recommendations.remove(0);
+
 
                 if (recommendations.size() > 0 ) {
+                    queryFound = recommendations.get(0);
+                    recommendations.remove(0);
                     ListActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
