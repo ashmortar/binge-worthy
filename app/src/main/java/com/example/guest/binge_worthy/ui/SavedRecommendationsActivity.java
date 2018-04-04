@@ -69,7 +69,6 @@ public class SavedRecommendationsActivity extends AppCompatActivity implements O
                 return new FirebaseRecommendationViewHolder(view);
             }
         };
-        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
 
