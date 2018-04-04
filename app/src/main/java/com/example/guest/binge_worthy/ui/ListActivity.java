@@ -42,7 +42,7 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
-         mContext = this;
+        mContext = this;
 
         Intent intent = getIntent();
         String query = intent.getStringExtra("query");
@@ -103,4 +103,10 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "search term detail view", Toast.LENGTH_SHORT).show();
         }
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: has run");
+    }
+
 }

@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSavedItemsButton.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+        Log.d(TAG, "onCreate: has run");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -80,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //go to list activity
                 Intent intent = new Intent(MainActivity.this, ListActivity.class);
                 intent.putExtra("query", query);
+                mSearchQuery.setText("");
                 startActivity(intent);
-                finish();
             }
         }
         if (v == mSavedItemsButton) {
@@ -94,12 +95,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart: has run");
         mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop: has run");
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }

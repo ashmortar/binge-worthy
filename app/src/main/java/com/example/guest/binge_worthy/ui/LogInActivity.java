@@ -42,6 +42,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_log_in);
         ButterKnife.bind(this);
         mAuth = FirebaseAuth.getInstance();
+        Log.d(TAG, "onCreate: has run");
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -49,7 +50,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                 }
@@ -112,12 +113,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart: has run");
         mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop: has run");
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
