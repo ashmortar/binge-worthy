@@ -60,6 +60,7 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
         return mRecommendations.size();
     }
 
+
     public class RecommendationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
         //bind views here

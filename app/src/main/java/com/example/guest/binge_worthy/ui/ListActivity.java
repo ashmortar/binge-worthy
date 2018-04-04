@@ -73,10 +73,10 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
                         public void run() {
                             mAdapter = new RecommendationListAdapter(getApplicationContext(), recommendations);
                             mRecyclerVew.setAdapter(mAdapter);
-                            RecyclerView.LayoutManager layoutManager =
-                                    new LinearLayoutManager(ListActivity.this);
+                            mRecyclerVew.setHasFixedSize(false);
+                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                            Log.d(TAG, "run: " + layoutManager.isAutoMeasureEnabled());
                             mRecyclerVew.setLayoutManager(layoutManager);
-                            mRecyclerVew.setHasFixedSize(true);
                         }
                     });
                 } else {
