@@ -31,6 +31,7 @@ android {
     }
     buildTypes.each {
         it.buildConfigField('String', 'TASTEDIVE_DB_API_KEY', TASTEDIVE_API_KEY)
+        it.buildConfigField('String', 'YOUTUBE_API_KEY', YOUTUBE_API_KEY)
     }
     repositories {
         mavenCentral()
@@ -51,10 +52,11 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'org.parceler:parceler-api:1.1.6'
     annotationProcessor 'org.parceler:parceler:1.1.6'
-    compile 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.google.firebase:firebase-database:11.8.0'
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
-    compile 'com.google.firebase:firebase-auth:11.8.0'
-    compile 'com.google.android.gms:play-services-auth:11.8.0'
+    implementation 'com.google.firebase:firebase-auth:11.8.0'
+    implementation 'com.google.android.gms:play-services-auth:11.8.0'
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
 
 
 }

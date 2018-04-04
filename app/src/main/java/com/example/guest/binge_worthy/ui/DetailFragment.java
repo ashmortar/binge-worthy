@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +57,12 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
         if (getArguments() != null) {
             mRecommendation = Parcels.unwrap(getArguments().getParcelable("recommendation"));
             Log.i("onCreate", "ran");
+            YoutubeFragment fragment = new YoutubeFragment();
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.youtube,fragment)
+                    .addToBackStack(null)
+                    .commit();
         }
 
     }
