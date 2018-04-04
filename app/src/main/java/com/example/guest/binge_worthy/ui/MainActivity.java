@@ -31,7 +31,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth.AuthStateListener mAuthListener;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
-    @BindView(R.id.appNameTextView) TextView mAppNameTextView;
+    @BindView(R.id.logo1) TextView mLogo1;
+    @BindView(R.id.logo2) TextView mLogo2;
+    @BindView(R.id.logo3) TextView mLogo3;
+    @BindView(R.id.textView4) TextView mTagline;
     @BindView(R.id.searchQuery) EditText mSearchQuery;
     @BindView(R.id.queryButton) Button mQueryButton;
     @BindView(R.id.savedItemsList) Button mSavedItemsButton;
