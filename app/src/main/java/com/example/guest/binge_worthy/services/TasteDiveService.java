@@ -48,6 +48,26 @@ public class TasteDiveService {
         try {
             String jsonData = response.body().string();
             JSONObject resultsJSON = new JSONObject(jsonData);
+            JSONArray queryArray = resultsJSON.getJSONObject("Similar").getJSONArray("Info");
+            JSONObject queryFound = queryArray.getJSONObject(0);
+            String mname = queryFound.getString("Name");
+            String mtype = queryFound.getString("Type");
+            String mwTeaser = queryFound.getString("wTeaser");
+            String mwURL = queryFound.optString("wUrl", "no wikipedia page available");
+            String myUrl = queryFound.getString("yUrl");
+            String myID = queryFound.optString("yID", "");
+            if (mwURL.equals("null")) {
+                mwURL = "no wikipedia page available";
+            }
+            if (myUrl.equals("null")) {
+                myUrl = "https://www.youtube.com/results?search_query=" +  mname.replace(" ", "+");
+            }
+            if (myID.equals("null")) {
+                myID = "";
+            }
+            Recommendation mrecommendation = new Recommendation(mname, mtype, mwTeaser, mwURL, myUrl, myID);
+            output.add(mrecommendation);
+
             JSONArray resultsARRAY = resultsJSON.getJSONObject("Similar").getJSONArray("Results");
 
             for (int i =  0; i < resultsARRAY.length(); i++) {

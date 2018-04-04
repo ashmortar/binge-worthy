@@ -34,6 +34,7 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
     private RecommendationListAdapter mAdapter;
     public ArrayList<Recommendation> recommendations = new ArrayList<>();
     Context mContext;
+    Recommendation queryFound;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
 
@@ -66,6 +67,8 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call call, Response response) throws IOException {
                 Log.v(TAG, response.toString());
                 recommendations = tasteDiveService.processResults(response);
+                queryFound = recommendations.get(0);
+                recommendations.remove(0);
 
                 if (recommendations.size() > 0 ) {
                     ListActivity.this.runOnUiThread(new Runnable() {
@@ -100,7 +103,7 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         view.startAnimation(buttonClick);
         if (view == mSearchedTermView) {
 
-            Toast.makeText(this, "search term detail view", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, queryFound.getwTeaser(), Toast.LENGTH_LONG).show();
         }
     }
     @Override
