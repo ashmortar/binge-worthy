@@ -48,6 +48,7 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
 
     public void bindRecommendation(Recommendation recommendation) {
         //bind views
+        Log.d(TAG, "bindRecommendation: " + recommendation.getName());
         ImageView mIconImageView = (ImageView) mView.findViewById(R.id.iconImageView);
         TextView mNameTextView = (TextView) mView.findViewById(R.id.nameTextView);
         //set values
