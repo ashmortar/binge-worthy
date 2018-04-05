@@ -84,6 +84,7 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
             Intent intent = new Intent(mContext, DetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("recommendations", Parcels.wrap(mRecommendations));
+            intent.putExtra("source", "api");
             mContext.startActivity(intent);
         }
 
