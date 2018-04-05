@@ -8,27 +8,6 @@
     android:theme="@style/noActionBarTheme"
     tools:context="com.example.guest.binge_worthy.ui.MainActivity">
 
-    <EditText
-        android:id="@+id/searchQuery"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#ffffff"
-        android:fontFamily="@font/raleway_thin"
-        android:hint="@string/searchParameter"
-        android:inputType="text"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/queryButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.918" />
-
     <Button
         android:id="@+id/queryButton"
         android:layout_width="217dp"
@@ -74,7 +53,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/roundedbutton"
         android:fontFamily="raleway-thin"
-        android:text="@string/savedButton"
+        android:text="@string/savedItems"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

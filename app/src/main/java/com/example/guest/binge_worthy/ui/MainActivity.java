@@ -1,6 +1,4 @@
 package com.example.guest.binge_worthy.ui;
-
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,18 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.HttpUrl;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -35,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.logo2) TextView mLogo2;
     @BindView(R.id.logo3) TextView mLogo3;
     @BindView(R.id.textView4) TextView mTagline;
-    @BindView(R.id.searchQuery) EditText mSearchQuery;
     @BindView(R.id.queryButton) Button mQueryButton;
     @BindView(R.id.savedItemsList) Button mSavedItemsButton;
 
@@ -45,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mSearchQuery.setText("");
         mQueryButton.setOnClickListener(this);
         mSavedItemsButton.setOnClickListener(this);
 
@@ -71,19 +62,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         v.startAnimation(buttonClick);
         if (v == mQueryButton) {
-            String query = mSearchQuery.getText().toString();
+            Intent intent = new Intent(MainActivity.this, ListActivity.class);
+            startActivity(intent);
 
-            //validate input
-            if (query.equals("")) {
-                //tell user what sorts of searches can work
-                Toast.makeText(this, "please enter a search query. \nTry a show, movie or band you like!", Toast.LENGTH_LONG).show();
-            } else {
-                //go to list activity
-                Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                intent.putExtra("query", query);
-                mSearchQuery.setText("");
-                startActivity(intent);
-            }
         }
         if (v == mSavedItemsButton) {
             Intent intent = new Intent(MainActivity.this, SavedRecommendationsActivity.class);

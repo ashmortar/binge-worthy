@@ -1,19 +1,12 @@
 package com.example.guest.binge_worthy.ui;
-
-import android.os.Parcel;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ViewParent;
-
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.adapters.RecommendationPagerAdapter;
 import com.example.guest.binge_worthy.models.Recommendation;
-
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -38,4 +31,5 @@ public class DetailActivity extends AppCompatActivity {
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition, true);
     }
+
 }

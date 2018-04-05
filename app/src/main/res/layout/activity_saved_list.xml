@@ -7,13 +7,14 @@
     android:background="#2f3031"
     tools:context="com.example.guest.binge_worthy.ui.ListActivity">
 
+
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/fragmentList"
-        android:name="com.example.guest.binge_worthy.ui.ListFragment"
+        android:name="com.example.guest.binge_worthy.ui.SavedListFragment"
         tools:layout="@layout/fragment_list"/>
 
 </android.support.constraint.ConstraintLayout>
