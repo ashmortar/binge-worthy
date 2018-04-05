@@ -18,7 +18,7 @@ import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 public class YoutubeFragment extends Fragment {
     private static final String TAG = YoutubeFragment.class.getSimpleName();
-    private static String VIDEO_ID = "3TeW2ryh-sQ";
+    private static String VIDEO_ID;
 
     public YoutubeFragment() {}
 
