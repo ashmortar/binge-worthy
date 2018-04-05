@@ -14,7 +14,6 @@
     <string name="tagline">a recommendation service to help you find your next binge"</string>
     <string name="recommendButton">recommend()</string>
     <string name="searchParameter">movie, band, book or show</string>
-    <string name="savedButton">saved binges</string>
     <string name="logo1">binge</string>
     <string name="logo2">W</string>
     <string name="logo3">orthy</string>
@@ -28,4 +27,9 @@
     <string name="youSearched">you searched for:</string>
     <string name="query">Radiohead</string>
     <string name="results">results:</string>
+    <string name="savedItems">myBinges()</string>
+    <string name="touchQueue">swipe to delete</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

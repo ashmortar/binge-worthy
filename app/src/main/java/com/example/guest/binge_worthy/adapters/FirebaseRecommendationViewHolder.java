@@ -33,10 +33,10 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
     private View mView;
     private Context mContext;
     private FirebaseUser user;
-    ArrayList recommendations = new ArrayList();
     private static final int MAX_HEIGHT = 200;
     private static final int MAX_WIDTH = 200;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+    public ImageView mIconImageView;
 
 
     public FirebaseRecommendationViewHolder (View itemView) {
@@ -49,7 +49,7 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
     public void bindRecommendation(Recommendation recommendation) {
         //bind views
         Log.d(TAG, "bindRecommendation: " + recommendation.getName());
-        ImageView mIconImageView = (ImageView) mView.findViewById(R.id.iconImageView);
+        mIconImageView = (ImageView) mView.findViewById(R.id.iconImageView);
         TextView mNameTextView = (TextView) mView.findViewById(R.id.nameTextView);
         //set values
         mNameTextView.setText(recommendation.getName());
@@ -82,6 +82,7 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
                 intent.putExtra("position", itemPosition);
                 intent.putExtra("recommendations", Parcels.wrap(recommendations));
                 intent.putExtra("query", "Your Saved Items");
+                intent.putExtra("source", "saved");
                 mContext.startActivity(intent);
             }
 
@@ -113,4 +114,5 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
             return R.drawable.photo;
         }
     }
+
 }

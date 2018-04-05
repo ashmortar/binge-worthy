@@ -5,6 +5,7 @@ package com.example.guest.binge_worthy;
 public class Constants {
     //make api key available
     public static final String TASTEDIVE_API_KEY = BuildConfig.TASTEDIVE_DB_API_KEY;
+    public static final String YOUTUBE_API_KEY = BuildConfig.YOUTUBE_API_KEY;
     //query parameters
     public static final String QUERY_PARAMETER = "q";
     public static final String TYPE_PARAMETER = "type";

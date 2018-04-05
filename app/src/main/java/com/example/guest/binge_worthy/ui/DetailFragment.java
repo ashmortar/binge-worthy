@@ -1,10 +1,9 @@
 package com.example.guest.binge_worthy.ui;
-
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,18 +12,13 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-
 import org.parceler.Parcels;
-import org.w3c.dom.Text;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -56,6 +50,12 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
         if (getArguments() != null) {
             mRecommendation = Parcels.unwrap(getArguments().getParcelable("recommendation"));
             Log.i("onCreate", "ran");
+            YoutubeFragment fragment = new YoutubeFragment();
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.youtube,fragment)
+                    .addToBackStack(null)
+                    .commit();
         }
 
     }

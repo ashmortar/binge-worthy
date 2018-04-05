@@ -78,4 +78,6 @@ public class Recommendation {
     public void setPushId(String pushId) {
         this.pushId = pushId;
     }
+
+
 }
