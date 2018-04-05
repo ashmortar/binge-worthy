@@ -23,7 +23,7 @@ import com.google.firebase.database.Query;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SavedListFragment extends Fragment implements OnStartDragListener, OnFirebaseDataChanged {
+public class SavedListFragment extends Fragment implements OnFirebaseDataChanged {
     private static final String TAG = SavedListFragment.class.getSimpleName();
     private MyFireBaseRecyclerAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
@@ -84,10 +84,6 @@ public class SavedListFragment extends Fragment implements OnStartDragListener, 
 
     }
 
-    @Override
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mItemTouchHelper.startDrag(viewHolder);
-    }
 
     @Override
     public void onDestroy() {
@@ -111,9 +107,4 @@ public class SavedListFragment extends Fragment implements OnStartDragListener, 
         mFirebaseAdapter.stopListening();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-//        mFirebaseAdapter.setIndexInFirebase();
-    }
 }

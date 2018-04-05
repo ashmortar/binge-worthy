@@ -33,7 +33,6 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
     private View mView;
     private Context mContext;
     private FirebaseUser user;
-    ArrayList recommendations = new ArrayList();
     private static final int MAX_HEIGHT = 200;
     private static final int MAX_WIDTH = 200;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
@@ -115,4 +114,5 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
             return R.drawable.photo;
         }
     }
+
 }

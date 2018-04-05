@@ -11,7 +11,6 @@ public class Recommendation {
     private String yUrl;
     private String yID;
     private String pushId;
-    private String index;
 
     public Recommendation(){}
 
@@ -22,7 +21,6 @@ public class Recommendation {
         this.wUrl = wUrl;
         this.yUrl = yUrl;
         this.yID = yID;
-        this.index = "unassigned";
     }
 
     public String getName() {
@@ -81,8 +79,5 @@ public class Recommendation {
         this.pushId = pushId;
     }
 
-    public String getIndex() { return index;}
-
-    public void setIndex(String index) {this.index = index;}
 
 }

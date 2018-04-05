@@ -69,14 +69,7 @@ public class MyFireBaseRecyclerAdapter extends FirebaseRecyclerAdapter<Recommend
         return false;
     }
 
-    public void setIndexInFirebase(ArrayList<Recommendation> recommendations) {
-        for (Recommendation recommendation : recommendations) {
-            int index = recommendations.indexOf(recommendation);
-            DatabaseReference ref = getRef(index);
-            recommendation.setIndex(Integer.toString(index));
-            ref.setValue(recommendation);
-        }
-    }
+
 
 
 
