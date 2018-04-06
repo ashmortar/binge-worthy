@@ -1,8 +1,5 @@
 package com.example.guest.binge_worthy.util;
-
-
 import com.example.guest.binge_worthy.models.Recommendation;
-
 import java.util.ArrayList;
 
 public interface OnSelectedListener {

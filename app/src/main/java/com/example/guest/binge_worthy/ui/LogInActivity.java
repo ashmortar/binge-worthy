@@ -32,7 +32,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.createAccountTextView) TextView mCrreateAccounText;
     @BindView(R.id.signInButton) Button mSignInButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +39,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         ButterKnife.bind(this);
         mAuth = FirebaseAuth.getInstance();
         Log.d(TAG, "onCreate: has run");
-
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -53,11 +51,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         };
-
         mSignInButton.setOnClickListener(this);
         mCrreateAccounText.setOnClickListener(this);
         createAuthDialog();
     }
+
     private void createAuthDialog() {
         mAuthProgressDialog = new ProgressDialog(this);
         mAuthProgressDialog.setTitle("Please wait...");
@@ -85,14 +83,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             mEmailEditText.setError("please enter an email");
             return;
         }
-
         if (password.equals("")) {
             mPasswordEditText.setError("please enter a password");
             return;
         }
-
         mAuthProgressDialog.show();
-
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

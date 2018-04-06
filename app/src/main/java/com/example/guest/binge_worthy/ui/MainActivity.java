@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.queryButton) Button mQueryButton;
     @BindView(R.id.savedItemsList) Button mSavedItemsButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         mQueryButton.setOnClickListener(this);
         mSavedItemsButton.setOnClickListener(this);
-
         mAuth = FirebaseAuth.getInstance();
         Log.d(TAG, "onCreate: has run");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -64,13 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v == mQueryButton) {
             Intent intent = new Intent(MainActivity.this, ListActivity.class);
             startActivity(intent);
-
         }
         if (v == mSavedItemsButton) {
             Log.d(TAG, "savedbuttonclicked");
             Intent intent = new Intent(MainActivity.this, SavedRecommendationsActivity.class);
             startActivity(intent);
-
         }
     }
 
@@ -122,5 +118,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
         finish();
     }
-
 }

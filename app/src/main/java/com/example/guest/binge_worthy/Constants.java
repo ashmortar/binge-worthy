@@ -15,4 +15,11 @@ public class Constants {
 
     //base url(s)
     public static final String BASE_URL = "https://tastedive.com/api/similar";
+
+    // constants
+    public static final String POSITION_KEY = "position";
+    public static final String RECSARRAY_KEY = "recs";
+    public static final String SOURCE_KEY = "source";
+    public static final String FROMAPI = "api";
+    public static final String FROMFIREBASE = "saved";
 }
