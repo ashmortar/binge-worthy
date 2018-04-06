@@ -59,6 +59,7 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mEditor = mSharedPreferences.edit();
         setHasOptionsMenu(true);
+
     }
 
 
@@ -70,10 +71,9 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         mContext = getContext();
 
         mRecentQuery = mSharedPreferences.getString("query", null);
-
+        mSearchedTermView.setOnClickListener(this);
         if (mRecentQuery != null) {
             mSearchedTermView.setText(mRecentQuery);
-            mSearchedTermView.setOnClickListener(this);
             getRecommendations(mRecentQuery);
         }
         return v;
@@ -112,8 +112,10 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         view.startAnimation(buttonClick);
         if (view == mSearchedTermView) {
-
-            Toast.makeText(getActivity(), queryFound.getwTeaser(), Toast.LENGTH_LONG).show();
+            if (queryFound != null) {
+                Toast.makeText(getActivity(), queryFound.getwTeaser(), Toast.LENGTH_LONG).show();
+            }
+            Toast.makeText(getActivity(), "enter your search above", Toast.LENGTH_SHORT).show();
         }
     }
 
