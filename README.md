@@ -34,15 +34,17 @@ This android app uses the [TASTED!VE](https://tastedive.com/) api to drive user 
 
 ## Known Bugs
 
-* Curretnly there is a bug where the app will occasionally force exit when navigating from the list activity to the main activity.
+* no currently known bugs
 
 ## Support and contact details
 
 If you have any issues or have questions, ideas or concerns please email ashmortar@gmail.com or contribute to the code
+
 ## Technologies Used
 
 * Java
 * Android Studio
+* Youtube Android API
 
 
 ### License
