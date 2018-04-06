@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
         if (v == mSavedItemsButton) {
+            Log.d(TAG, "savedbuttonclicked");
             Intent intent = new Intent(MainActivity.this, SavedRecommendationsActivity.class);
             startActivity(intent);
         }
