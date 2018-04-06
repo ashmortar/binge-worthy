@@ -25,7 +25,7 @@
     <string name="displayName">display name</string>
     <string name="toLogIn">click here to log in an existing account</string>
     <string name="youSearched">you searched for:</string>
-    <string name="query">Radiohead</string>
+    <string name="query">Type Your Search Above</string>
     <string name="results">results:</string>
     <string name="savedItems">myBinges()</string>
     <string name="touchQueue">swipe to delete</string>

@@ -64,7 +64,7 @@ public class MyFireBaseRecyclerAdapter extends FirebaseRecyclerAdapter<Recommend
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-//        Collections.swap(mRecommendatons, fromPosition, toPosition);
+//        Collections.swap(mRecommendations, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         return false;
     }

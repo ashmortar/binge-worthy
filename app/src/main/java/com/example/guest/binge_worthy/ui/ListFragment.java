@@ -55,10 +55,6 @@ public class ListFragment extends Fragment implements View.OnClickListener {
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mEditor = mSharedPreferences.edit();
-
-
-
-
         setHasOptionsMenu(true);
     }
 

@@ -50,12 +50,12 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
         if (getArguments() != null) {
             mRecommendation = Parcels.unwrap(getArguments().getParcelable("recommendation"));
             Log.i("onCreate", "ran");
-            YoutubeFragment fragment = new YoutubeFragment();
-            FragmentManager manager = getFragmentManager();
-            manager.beginTransaction()
-                    .replace(R.id.youtube,fragment)
-                    .addToBackStack(null)
-                    .commit();
+//            YoutubeFragment fragment = new YoutubeFragment();
+//            FragmentManager manager = getFragmentManager();
+//            manager.beginTransaction()
+//                    .replace(R.id.youtube,fragment)
+//                    .addToBackStack(null)
+//                    .commit();
         }
 
     }

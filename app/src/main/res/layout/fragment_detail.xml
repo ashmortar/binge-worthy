@@ -51,19 +51,23 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/background_light">
+                android:layout_height="wrap_content">
 
 
                 <TextView
                     android:id="@+id/fragTeaserView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginStart="15dp"
                     android:padding="10dp"
                     android:text="Party Down is an American comedy television series created and primarily written by John Enbom, Rob Thomas, Dan Etheridge and Paul Rudd that aired on the Starz network in the United States in 2009 and 2010. The series follows a group of caterers in Los Angeles as they hope to make it in Hollywood.Starz canceled Party Down on June 30, 2010. While the show was warmly received by critics, its Nielsen ratings were very low. Losing Jane Lynch to Glee as well as Adam Scott to Parks and Recreation were believed to be additional factors in the decision to end the series.This half-hour comedy follows a Los Angeles, California, catering team for the titular company. The sextet of aspiring Hollywood actors and writers, as well as drifting lost souls, work small-time catering gigs while hoping for their break or some positive change in their lives. Each episode finds the team working a new event, and inevitably getting tangled up with the colorful, affluent guests and their absurd lives."
-                    android:textSize="10sp" />
+                    android:textColor="#fff"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textAlignment="gravity"/>
 
 
             </RelativeLayout>
@@ -161,17 +165,6 @@
 
 
         </LinearLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:id="@+id/youtube"
-            android:minWidth="200dp"
-            android:minHeight="110dp">
-
-        </FrameLayout>
-
-
 
 
     </LinearLayout>
