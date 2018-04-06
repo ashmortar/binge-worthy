@@ -1,5 +1,4 @@
 package com.example.guest.binge_worthy.adapters;
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -8,11 +7,10 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.example.guest.binge_worthy.ui.DetailActivity;
-import com.example.guest.binge_worthy.ui.DetailFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,12 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
-
-import butterknife.BindView;
 
 public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final static String TAG = FirebaseRecommendationViewHolder.class.getSimpleName();
@@ -37,7 +31,6 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
     private static final int MAX_WIDTH = 200;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
     public ImageView mIconImageView;
-
 
     public FirebaseRecommendationViewHolder (View itemView) {
         super(itemView);
@@ -79,10 +72,9 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
                 int itemPosition = getLayoutPosition();
 
                 Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra("position", itemPosition);
-                intent.putExtra("recommendations", Parcels.wrap(recommendations));
-                intent.putExtra("query", "Your Saved Items");
-                intent.putExtra("source", "saved");
+                intent.putExtra(Constants.POSITION_KEY, itemPosition);
+                intent.putExtra(Constants.RECSARRAY_KEY, Parcels.wrap(recommendations));
+                intent.putExtra(Constants.SOURCE_KEY, Constants.FROMFIREBASE);
                 mContext.startActivity(intent);
             }
 

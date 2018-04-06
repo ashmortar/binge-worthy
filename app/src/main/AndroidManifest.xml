@@ -35,8 +35,6 @@
 
         </activity>
 
-
-
         <activity android:name=".ui.ListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -44,11 +42,10 @@
 
         </activity>
 
-        <activity android:name=".ui.DetailActivity">
+        <activity android:name=".ui.DetailActivity"
+            android:theme="@style/noActionBarTheme">
 
         </activity>
-
-
 
         <activity android:name=".ui.SavedRecommendationsActivity">
             <meta-data

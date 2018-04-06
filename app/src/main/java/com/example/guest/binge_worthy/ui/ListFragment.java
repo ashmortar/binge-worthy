@@ -22,6 +22,7 @@ import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.adapters.RecommendationListAdapter;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.example.guest.binge_worthy.services.TasteDiveService;
+import com.example.guest.binge_worthy.util.OnSelectedListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import butterknife.BindView;
@@ -30,10 +31,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-
 public class ListFragment extends Fragment implements View.OnClickListener {
     private final static String TAG = ListFragment.class.getSimpleName();
-
     private RecommendationListAdapter mAdapter;
     public ArrayList<Recommendation> recommendations = new ArrayList<>();
     private Context mContext;
@@ -42,6 +41,7 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentQuery;
+    private OnSelectedListener mListener;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerVew;
     @BindView(R.id.textView2) TextView mSearchedTermView;
@@ -52,16 +52,10 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mEditor = mSharedPreferences.edit();
-
-
-
-
         setHasOptionsMenu(true);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,12 +63,10 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.bind(this, v);
         mContext = getContext();
-
         mRecentQuery = mSharedPreferences.getString("query", null);
-
+        mSearchedTermView.setOnClickListener(this);
         if (mRecentQuery != null) {
             mSearchedTermView.setText(mRecentQuery);
-            mSearchedTermView.setOnClickListener(this);
             getRecommendations(mRecentQuery);
         }
         return v;
@@ -84,10 +76,8 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_search, menu);
-
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -96,7 +86,6 @@ public class ListFragment extends Fragment implements View.OnClickListener {
                 mSearchedTermView.setText(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
@@ -113,34 +102,42 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         view.startAnimation(buttonClick);
         if (view == mSearchedTermView) {
+            if (queryFound != null) {
+                Toast.makeText(getActivity(), queryFound.getwTeaser(), Toast.LENGTH_LONG).show();
+            }
+            Toast.makeText(getActivity(), "enter your search above", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-            Toast.makeText(getActivity(), queryFound.getwTeaser(), Toast.LENGTH_LONG).show();
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (OnSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + e.getMessage());
         }
     }
 
     private void getRecommendations(String query) {
         final TasteDiveService tasteDiveService = new TasteDiveService();
-
         tasteDiveService.apiCall(query, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d(TAG, e.toString());
                 e.printStackTrace();
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.v(TAG, response.toString());
                 recommendations = tasteDiveService.processResults(response);
-
-
                 if (recommendations.size() > 0 ) {
                     queryFound = recommendations.get(0);
                     recommendations.remove(0);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mAdapter = new RecommendationListAdapter(getActivity(), recommendations);
+                            mAdapter = new RecommendationListAdapter(getActivity(), recommendations, mListener);
                             mRecyclerVew.setAdapter(mAdapter);
                             mRecyclerVew.setHasFixedSize(false);
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -156,14 +153,11 @@ public class ListFragment extends Fragment implements View.OnClickListener {
                         }
                     });
                 }
-
             }
         });
-
     }
 
     private void addToSharedPreferences(String query) {
         mEditor.putString("query", query).apply();
     }
-
 }

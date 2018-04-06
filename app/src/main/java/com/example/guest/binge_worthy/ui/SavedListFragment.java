@@ -13,13 +13,12 @@ import com.example.guest.binge_worthy.adapters.FirebaseRecommendationViewHolder;
 import com.example.guest.binge_worthy.adapters.MyFireBaseRecyclerAdapter;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.example.guest.binge_worthy.util.OnFirebaseDataChanged;
-import com.example.guest.binge_worthy.util.OnStartDragListener;
+import com.example.guest.binge_worthy.util.OnSelectedListener;
 import com.example.guest.binge_worthy.util.SimpleItemTouchHelperCallback;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -29,12 +28,11 @@ public class SavedListFragment extends Fragment implements OnFirebaseDataChanged
     private ItemTouchHelper mItemTouchHelper;
     private Query query;
     private String uid;
+    private OnSelectedListener mListener;
 
     @BindView(R.id.recyclerView1) RecyclerView mRecyclerView;
 
-
     public SavedListFragment() {}
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,17 +42,20 @@ public class SavedListFragment extends Fragment implements OnFirebaseDataChanged
         setupFirebaseAdapter();
         return view;
     }
+
     private void setupFirebaseAdapter() {
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        query = FirebaseDatabase.getInstance().getReference("users").child(uid).orderByChild("index");
+        query = FirebaseDatabase.getInstance()
+                .getReference("users").child(uid)
+                .orderByChild("index");
         FirebaseRecyclerOptions<Recommendation> options = new FirebaseRecyclerOptions.Builder<Recommendation>()
                 .setQuery(query, Recommendation.class)
                 .build();
         mFirebaseAdapter = new MyFireBaseRecyclerAdapter(options)
          {
             @Override
-            public void onBindViewHolder(FirebaseRecommendationViewHolder holder, int position, Recommendation model) {
-
+            public void onBindViewHolder(FirebaseRecommendationViewHolder holder,
+                                         int position, Recommendation model) {
                 holder.bindRecommendation(model);
             }
 
@@ -64,12 +65,9 @@ public class SavedListFragment extends Fragment implements OnFirebaseDataChanged
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drag, parent, false);
                 return new FirebaseRecommendationViewHolder(view);
             }
-
-
         };
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mFirebaseAdapter);
-
         mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
@@ -77,13 +75,10 @@ public class SavedListFragment extends Fragment implements OnFirebaseDataChanged
                 mFirebaseAdapter.notifyDataSetChanged();
             }
         });
-
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-
     }
-
 
     @Override
     public void onDestroy() {
@@ -106,5 +101,4 @@ public class SavedListFragment extends Fragment implements OnFirebaseDataChanged
         super.onStop();
         mFirebaseAdapter.stopListening();
     }
-
 }
