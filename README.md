@@ -3,26 +3,33 @@
 
 #### _A content suggestion system for lovers of books, movies, tv, music and more!_
 
-#### By _**Aaron Ross (3/30/2018)**_
+#### By _**Aaron Ross (4/6/2018)**_
 
 ## Description
 
-This android app uses the [TASTED!VE](https://tastedive.com/) api to drive user content discovery. The user can enter a genre, movie title, band, tv show and many other things to get relevent suggestions based upon their query.
+This android app uses the [TASTED!VE](https://tastedive.com/) api to drive user content discovery. The user can enter a genre, movie title, band, tv show and many other things to get relevent suggestions based upon their query.  The detailed information is displayed in its own view where the user can see a summary of the item, get a link to the wikipedia article, get a link to youtube and have the ability to save the item to their own list for future viewing.  The detail view can also be rotated horizontally and it will change into an embedded youtube player that will play a relevent youtube video.
 
 ## Setup/Installation
 * Clone repository to your machine from GitHub
 * Open the repository with Android Studio
 * Set up a virtual android device (code was optimized for Nexus 6)
 * Sign up for an API key from [tasteD!ve](https://tastedive.com/read/api)
+* Register your android application following Step 2 of the [Android Quickstart Guide]{https://developers.google.com/youtube/v3/quickstart/android}
 * Create a file in the root directory called ``gradle.properties``
-* into ``gradle.properties`` add the following line ``TASTEDIVE_API_KEY="<YOUR_API_KEY>"``
+* into ``gradle.properties`` add the following lines of code: 
+
+   ```java
+   TASTEDIVE_API_KEY="<YOUR_API_KEY>"
+   YOUTUBE_API_KEY="<YOUR_API_KEY>"
+   ```
+  
 * sync gradle
 * Run the application
+* If running the app on an emulated device you must have the YouTube app installed on the device in order for video playback to functions correctly.  This can either be accomplished by emulating on a Nexus 5 or Nexus 5x device running API v26 or above. After booting the device update your google play services and youtubee applications through the play store on the phone.
 
 
 ## Future Development
 
-* embed youtube videos in detail view
 * use tmDB data and maybe another api for music data for different recommendation types
 
 ## Known Bugs
