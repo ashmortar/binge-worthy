@@ -11,17 +11,39 @@ import android.view.ViewGroup;
 
 import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
+import com.example.guest.binge_worthy.models.Recommendation;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
+import org.parceler.Parcels;
+
 
 public class YoutubeFragment extends Fragment {
     private static final String TAG = YoutubeFragment.class.getSimpleName();
+    private Recommendation mRecommendation;
     private static String VIDEO_ID;
 
     public YoutubeFragment() {}
 
+    public static YoutubeFragment newInstance(Recommendation recommendation) {
+        YoutubeFragment fragment = new YoutubeFragment();
+        Bundle args = new Bundle();
+        args.putParcelable("recommendation", Parcels.wrap(recommendation));
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mRecommendation = Parcels.unwrap(getArguments().getParcelable("recommendation"));
+            Log.i("onCreate", "ran");
+            VIDEO_ID = mRecommendation.getyID();
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

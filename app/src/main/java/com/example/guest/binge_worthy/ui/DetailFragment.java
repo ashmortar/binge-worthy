@@ -34,6 +34,7 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
     private Recommendation mRecommendation;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
+
     public DetailFragment() {}
 
     public static DetailFragment newInstance(Recommendation recommendation) {
@@ -50,12 +51,7 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
         if (getArguments() != null) {
             mRecommendation = Parcels.unwrap(getArguments().getParcelable("recommendation"));
             Log.i("onCreate", "ran");
-//            YoutubeFragment fragment = new YoutubeFragment();
-//            FragmentManager manager = getFragmentManager();
-//            manager.beginTransaction()
-//                    .replace(R.id.youtube,fragment)
-//                    .addToBackStack(null)
-//                    .commit();
+
         }
 
     }
