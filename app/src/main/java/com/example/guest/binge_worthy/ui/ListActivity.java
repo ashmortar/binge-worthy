@@ -2,16 +2,12 @@ package com.example.guest.binge_worthy.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.example.guest.binge_worthy.util.OnSelectedListener;
-
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
-
 
 public class ListActivity extends AppCompatActivity implements OnSelectedListener {
     public static final String TAG = ListActivity.class.getSimpleName();
@@ -37,7 +33,6 @@ public class ListActivity extends AppCompatActivity implements OnSelectedListene
                 startActivity(intent);
             }
         }
-
     }
 
     @Override
@@ -62,6 +57,4 @@ public class ListActivity extends AppCompatActivity implements OnSelectedListene
             outState.putParcelable(Constants.RECSARRAY_KEY, Parcels.wrap(mRecs));
         }
     }
-
-
 }

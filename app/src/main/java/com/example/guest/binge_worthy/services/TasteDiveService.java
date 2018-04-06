@@ -1,19 +1,13 @@
 package com.example.guest.binge_worthy.services;
 
-
-
 import android.util.Log;
-
 import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.models.Recommendation;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
@@ -65,8 +59,8 @@ public class TasteDiveService {
             if (myID.equals("null")) {
                 myID = "";
             }
-            Recommendation mrecommendation = new Recommendation(mname, mtype, mwTeaser, mwURL, myUrl, myID);
-            output.add(mrecommendation);
+            Recommendation mRecommendation = new Recommendation(mname, mtype, mwTeaser, mwURL, myUrl, myID);
+            output.add(mRecommendation);
 
             JSONArray resultsARRAY = resultsJSON.getJSONObject("Similar").getJSONArray("Results");
 

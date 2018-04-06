@@ -1,11 +1,7 @@
 package com.example.guest.binge_worthy.adapters;
-
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,21 +10,14 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
-import com.example.guest.binge_worthy.services.TasteDiveService;
 import com.example.guest.binge_worthy.ui.DetailActivity;
 import com.example.guest.binge_worthy.util.OnSelectedListener;
 import com.squareup.picasso.Picasso;
-
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -49,7 +38,7 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
     }
 
     @Override
-    public RecommendationListAdapter.RecommendationViewHolder onCreateViewHolder (ViewGroup parent, int viewType) {
+    public RecommendationListAdapter.RecommendationViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommendation_list_item, parent, false);
         RecommendationViewHolder viewHolder = new RecommendationViewHolder(view, mRecommendations, mListener);
         return viewHolder;
@@ -68,14 +57,11 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
     public class RecommendationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
         private Context mContext;
-        private ArrayList<Recommendation> mRecs = new ArrayList<>();
+        private ArrayList<Recommendation> mRecs;
         private OnSelectedListener mListener;
         //bind views here
-        @BindView(R.id.iconImageView)
-        ImageView mIconImageView;
-        @BindView(R.id.nameTextView)
-        TextView mNameTextView;
-
+        @BindView(R.id.iconImageView) ImageView mIconImageView;
+        @BindView(R.id.nameTextView) TextView mNameTextView;
 
         public RecommendationViewHolder(View itemView, ArrayList<Recommendation> recommendations, OnSelectedListener selectedListener) {
             super(itemView);

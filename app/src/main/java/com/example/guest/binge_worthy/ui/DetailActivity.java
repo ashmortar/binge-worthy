@@ -2,19 +2,14 @@ package com.example.guest.binge_worthy.ui;
 import android.content.res.Configuration;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
-
 import com.example.guest.binge_worthy.models.Recommendation;
 import org.parceler.Parcels;
 import java.util.ArrayList;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 public class DetailActivity extends AppCompatActivity {
     private int mOrientation;
@@ -81,6 +76,4 @@ public class DetailActivity extends AppCompatActivity {
             yft.commit();
         }
     }
-
-
 }

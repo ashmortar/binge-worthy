@@ -3,7 +3,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
@@ -26,18 +24,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailFragment extends Fragment  implements  View.OnClickListener {
-    @BindView(R.id.fragNameView)
-    TextView mFragNameView;
+    @BindView(R.id.fragNameView) TextView mFragNameView;
     @BindView(R.id.fragTeaserView) TextView mFragTeaserView;
-    @BindView(R.id.fragTypeView)
-    TextView mFragTypeView;
+    @BindView(R.id.fragTypeView) TextView mFragTypeView;
     @BindView(R.id.fragwUrlView) TextView mFragWUrlView;
     @BindView(R.id.fragyUrlView) TextView mFragYUrlView;
     @BindView(R.id.saveButton) Button mSaveButton;
+
     private Recommendation mRecommendation;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
     private String mSource;
-
 
     public DetailFragment() {}
 
@@ -57,9 +53,7 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
             mRecommendation = Parcels.unwrap(getArguments().getParcelable("recommendation"));
             mSource = getArguments().getString(Constants.SOURCE_KEY);
             Log.i("onCreate", "ran");
-
         }
-
     }
 
     @Override
@@ -81,7 +75,6 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
         } else {
             mSaveButton.setOnClickListener(this);
         }
-
         return view;
     }
 
@@ -96,11 +89,9 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
             Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRecommendation.getyUrl()));
             startActivity(webIntent);
         }
-
         if (v == mSaveButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
-
             DatabaseReference ref = FirebaseDatabase
                     .getInstance()
                     .getReference("users")
@@ -111,6 +102,5 @@ public class DetailFragment extends Fragment  implements  View.OnClickListener {
             instanceRef.setValue(mRecommendation);
             Toast.makeText(getContext(), "recommendation added to your list", Toast.LENGTH_SHORT).show();
         }
-
     }
 }
