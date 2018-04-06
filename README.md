@@ -1,6 +1,6 @@
 
 # _bingeWorthy_
-![home-screen](https://photos.app.goo.gl/4gUV1WqStaPeJXio2)
+![home-screen](https://github.com/ashmortar/binge-worthy/blob/master/screenshots/home_screen.png)
 #### _A content suggestion system for lovers of books, movies, tv, music and more!_
 
 #### By _**Aaron Ross (4/6/2018)**_
