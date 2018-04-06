@@ -1,9 +1,8 @@
 
 # _bingeWorthy_
 ![home-screen](https://github.com/ashmortar/binge-worthy/blob/master/screenshots/home_screen.png)
-#### _A content suggestion system for lovers of books, movies, tv, music and more!_
 
-#### By _**Aaron Ross (4/6/2018)**_
+#### _**Aaron Ross (4/6/2018)**_
 
 ## Description
 
