@@ -29,6 +29,7 @@
     <string name="results">results:</string>
     <string name="savedItems">myBinges()</string>
     <string name="touchQueue">swipe to delete</string>
+    <string name="videoRotate">rotate phone for video</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

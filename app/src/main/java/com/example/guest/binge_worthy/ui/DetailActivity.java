@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 
 import com.example.guest.binge_worthy.models.Recommendation;
@@ -27,9 +29,9 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         mOrientation = getResources().getConfiguration().orientation;
-        source = getIntent().getStringExtra("source");
-        startingPosition = getIntent().getIntExtra("position", 0);
-        mRecommendations = Parcels.unwrap(getIntent().getParcelableExtra("recommendations"));
+        source = getIntent().getStringExtra(Constants.SOURCE_KEY);
+        startingPosition = getIntent().getIntExtra(Constants.POSITION_KEY, 0);
+        mRecommendations = Parcels.unwrap(getIntent().getParcelableExtra(Constants.RECSARRAY_KEY));
         mRecommendation = mRecommendations.get(startingPosition);
 
         makeFrags(mRecommendation);
@@ -38,11 +40,11 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (source.equals("saved")) {
+        if (source.equals(Constants.FROMFIREBASE)) {
             Intent intent = new Intent(this, SavedRecommendationsActivity.class);
             startActivity(intent);
         }
-        if (source.equals("api")) {
+        if (source.equals(Constants.FROMAPI)) {
             Intent intent = new Intent(this, ListActivity.class);
             startActivity(intent);
         }
@@ -50,7 +52,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void makeFrags(Recommendation recommendation) {
         if (mOrientation == Configuration.ORIENTATION_PORTRAIT) {
-            DetailFragment dFrag = DetailFragment.newInstance(recommendation);
+            DetailFragment dFrag = DetailFragment.newInstance(recommendation, source);
             FragmentTransaction dft = this.getSupportFragmentManager().beginTransaction();
             dft.replace(R.id.detailsHere, dFrag);
             dft.commit();
@@ -68,7 +70,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
 
         if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            DetailFragment dFrag = DetailFragment.newInstance(mRecommendation);
+            DetailFragment dFrag = DetailFragment.newInstance(mRecommendation, source);
             FragmentTransaction dft = this.getSupportFragmentManager().beginTransaction();
             dft.replace(R.id.detailsHere, dFrag);
             dft.commit();

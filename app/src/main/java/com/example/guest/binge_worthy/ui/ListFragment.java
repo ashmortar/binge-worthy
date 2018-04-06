@@ -22,6 +22,8 @@ import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.adapters.RecommendationListAdapter;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.example.guest.binge_worthy.services.TasteDiveService;
+import com.example.guest.binge_worthy.util.OnSelectedListener;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import butterknife.BindView;
@@ -42,6 +44,7 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentQuery;
+    private OnSelectedListener mListener;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerVew;
     @BindView(R.id.textView2) TextView mSearchedTermView;
@@ -114,6 +117,16 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (OnSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + e.getMessage());
+        }
+    }
+
     private void getRecommendations(String query) {
         final TasteDiveService tasteDiveService = new TasteDiveService();
 
@@ -136,7 +149,7 @@ public class ListFragment extends Fragment implements View.OnClickListener {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mAdapter = new RecommendationListAdapter(getActivity(), recommendations);
+                            mAdapter = new RecommendationListAdapter(getActivity(), recommendations, mListener);
                             mRecyclerVew.setAdapter(mAdapter);
                             mRecyclerVew.setHasFixedSize(false);
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());

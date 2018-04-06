@@ -17,10 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.example.guest.binge_worthy.services.TasteDiveService;
 import com.example.guest.binge_worthy.ui.DetailActivity;
+import com.example.guest.binge_worthy.util.OnSelectedListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -38,16 +40,18 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
     private static final int MAX_HEIGHT = 200;
     private static final int MAX_WIDTH = 200;
     private ArrayList<Recommendation> mRecommendations = new ArrayList<>();
+    private OnSelectedListener mListener;
 
-    public RecommendationListAdapter (Context context, ArrayList<Recommendation> recommendations) {
+    public RecommendationListAdapter (Context context, ArrayList<Recommendation> recommendations, OnSelectedListener selectedListener) {
         mContext = context;
         mRecommendations = recommendations;
+        mListener = selectedListener;
     }
 
     @Override
     public RecommendationListAdapter.RecommendationViewHolder onCreateViewHolder (ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommendation_list_item, parent, false);
-        RecommendationViewHolder viewHolder = new RecommendationViewHolder(view);
+        RecommendationViewHolder viewHolder = new RecommendationViewHolder(view, mRecommendations, mListener);
         return viewHolder;
     }
 
@@ -63,6 +67,9 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
 
     public class RecommendationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+        private Context mContext;
+        private ArrayList<Recommendation> mRecs = new ArrayList<>();
+        private OnSelectedListener mListener;
         //bind views here
         @BindView(R.id.iconImageView)
         ImageView mIconImageView;
@@ -70,10 +77,12 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
         TextView mNameTextView;
 
 
-        public RecommendationViewHolder(View itemView) {
+        public RecommendationViewHolder(View itemView, ArrayList<Recommendation> recommendations, OnSelectedListener selectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mRecs = recommendations;
+            mListener = selectedListener;
             itemView.setOnClickListener(this);
         }
 
@@ -81,10 +90,11 @@ public class RecommendationListAdapter extends RecyclerView.Adapter<Recommendati
         public void onClick(View v) {
             v.startAnimation(buttonClick);
             itemPosition = getLayoutPosition();
+            mListener.onItemSelected(itemPosition, mRecs, Constants.FROMAPI);
             Intent intent = new Intent(mContext, DetailActivity.class);
-            intent.putExtra("position", itemPosition);
-            intent.putExtra("recommendations", Parcels.wrap(mRecommendations));
-            intent.putExtra("source", "api");
+            intent.putExtra(Constants.POSITION_KEY, itemPosition);
+            intent.putExtra(Constants.RECSARRAY_KEY, Parcels.wrap(mRecommendations));
+            intent.putExtra(Constants.SOURCE_KEY, Constants.FROMAPI);
             mContext.startActivity(intent);
         }
 

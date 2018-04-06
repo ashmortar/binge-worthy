@@ -9,6 +9,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.guest.binge_worthy.Constants;
 import com.example.guest.binge_worthy.R;
 import com.example.guest.binge_worthy.models.Recommendation;
 import com.example.guest.binge_worthy.ui.DetailActivity;
@@ -79,10 +80,9 @@ public class FirebaseRecommendationViewHolder extends RecyclerView.ViewHolder im
                 int itemPosition = getLayoutPosition();
 
                 Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra("position", itemPosition);
-                intent.putExtra("recommendations", Parcels.wrap(recommendations));
-                intent.putExtra("query", "Your Saved Items");
-                intent.putExtra("source", "saved");
+                intent.putExtra(Constants.POSITION_KEY, itemPosition);
+                intent.putExtra(Constants.RECSARRAY_KEY, Parcels.wrap(recommendations));
+                intent.putExtra(Constants.SOURCE_KEY, Constants.FROMFIREBASE);
                 mContext.startActivity(intent);
             }
 
