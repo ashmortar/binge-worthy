@@ -24,7 +24,7 @@ This android app uses the [TASTED!VE](https://tastedive.com/) api to drive user 
   
 * sync gradle
 * Run the application
-* If running the app on an emulated device you must have the YouTube app installed on the device in order for video playback to functions correctly.  This can either be accomplished by emulating on a Nexus 5 or Nexus 5x device running API v26 or above. After booting the device update your google play services and youtubee applications through the play store on the phone.
+* If running the app on an emulated device you must have the YouTube app installed on the device in order for video playback to functions correctly.  This can either be accomplished by emulating on a Nexus 5 or Nexus 5x device running API v26 or above. After booting the device update your google play services and youtube applications through the play store on the phone.
 
 
 ## Future Development
